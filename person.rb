@@ -1,4 +1,8 @@
-class Person
+require './nameable.rb'
+require './capitalize_decorator.rb'
+require './trimmer_decorator.rb'
+
+class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
     @name = name
@@ -16,6 +20,10 @@ class Person
       false
     end
   end
+  
+    def correct_name 
+      @name
+    end
 
   private
 
