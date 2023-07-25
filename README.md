@@ -15,6 +15,7 @@
   - [Setup](#setup)
   - [Install](#install)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -87,6 +88,14 @@ Install this project with:
 - GitHub: [@PabloEGonz](https://github.com/PabloEGonz)
 - Twitter: [@PabloEzGon](https://twitter.com/PabloEzGon)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/pablo-ezequiel-gonz%C3%A1lez-ramos-b9b854265)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] Decorate classes
+- [ ] Set up associations
+- [ ] Add basic UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
