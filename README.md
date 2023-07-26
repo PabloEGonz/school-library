@@ -93,8 +93,8 @@ Install this project with:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Decorate classes
 - [ ] Set up associations
+- [ ] Create tests
 - [ ] Add basic UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
