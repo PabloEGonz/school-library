@@ -7,11 +7,10 @@ require './rentals'
 require './student'
 
 class Person < Nameable
-
   attr_accessor :name, :age
   attr_reader :id, :rentals
 
-  def initialize(age, name = 'Unknown', parent_permission = true)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     super()
     @id = Random.rand(1..1000)
     @name = name
@@ -19,7 +18,6 @@ class Person < Nameable
     @parent_permission = parent_permission
     @rentals = []
   end
-
 
   def can_use_services?
     if of_age? && @parent_permission
