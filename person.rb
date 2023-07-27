@@ -11,7 +11,7 @@ class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id, :rentals
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission = true)
     super()
     @id = Random.rand(1..1000)
     @name = name
@@ -39,9 +39,3 @@ class Person < Nameable
     @age >= 18
   end
 end
-
-
-
-b2 = Classroom.new('B2')
-puts b2.label
-# b2.add_student(student)
