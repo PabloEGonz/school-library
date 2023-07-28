@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require './nameable'
 require './base_decorator'
 require './capitalize_decorator'
