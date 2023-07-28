@@ -19,7 +19,7 @@ def main
 
   app = App.new
   option = nil
-  while option != 7
+  loop do
     print_options
     option = gets.chomp.to_i
     case option
@@ -31,6 +31,7 @@ def main
     when 6 then app.list_retals_from
     else
       puts 'See you soon!'
+      break
     end
   end
 end
