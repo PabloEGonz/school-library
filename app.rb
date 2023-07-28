@@ -46,7 +46,6 @@ list_options()
 end
 
 def create_book
-    puts 'new book'
     print 'Title: '
     STDOUT.flush
     title = gets.chomp
@@ -61,12 +60,16 @@ end
 def create_rental
     puts 'Select a book from the following list'
     books = Book.getBooks
-    books.map {|book, i| puts "(#{i+1}) #{book.title} by #{book.author}"}
+    books.map.with_index do |book, i|
+    puts "(#{i+1}) #{book.title} by #{book.author}"
+    end
     STDOUT.flush
     book = books[gets.chomp.to_i - 1]
-    puts 'Select a person from the following list by number not ID'
+    puts 'Select a person from the following list by number (not ID)'
     people = Person.getPeople
-    people.map {|person, i| puts "(#{i+1}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}"}
+    people.map.with_index do |person, i| 
+        puts "(#{i+1}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}"
+    end
     STDOUT.flush
     person = people[gets.chomp.to_i - 1]
     print 'Date: '
