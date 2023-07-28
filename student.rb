@@ -3,10 +3,13 @@ require './person'
 class Student < Person
   attr_reader :classroom
 
-  def initialize(age, name = 'Unknown', parent_permission: true, classroom: nil)
+  # rubocop:disable Style/OptionalBooleanParameter
+
+  def initialize(age, name = 'Unknown', parent_permission = true, classroom = nil)
     super(age, name, parent_permission)
     self.classroom = classroom if classroom
   end
+  # rubocop:enable Style/OptionalBooleanParameter
 
   def play_hooky
     '¯\(ツ)/¯'
