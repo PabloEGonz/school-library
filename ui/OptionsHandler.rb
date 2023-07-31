@@ -7,10 +7,10 @@ class OptionHandler
 
   def handle_option(option, app)
     case option
-    when 1 then app.handle_operation(@book_list)
+    when 1 then @app.list_all_books
     when 2 then @app.list_all_people
     when 3 then @app.create_person
-    when 4 then app.handle_operation(@book_creator)
+    when 4 then app.create_book
     when 5 then app.handle_operation(@rental_creator)
     when 6 then app.handle_operation(@rentals_from_list)
     else

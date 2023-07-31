@@ -1,9 +1,14 @@
 require_relative 'lib/managers/PeopleManager'
+require_relative 'lib/managers/BookManager'
 
 class App
   def initialize
     @books_manager = BookManager.new
     @people_manager = PeopleManager.new
+  end
+
+  def list_all_books
+    @books_manager.list_books
   end
 
   def list_all_people
@@ -12,6 +17,10 @@ class App
 
   def create_person
     @people_manager.create_person
+  end
+
+  def create_book
+    @books_manager.add_book
   end
 
   def create_rental
