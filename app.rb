@@ -2,7 +2,7 @@ require_relative 'lib/managers/PeopleManager'
 
 class App
   def initialize
-    @books = []
+    @books_manager = BookManager.new
     @people_manager = PeopleManager.new
   end
 
