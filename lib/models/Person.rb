@@ -1,10 +1,10 @@
-require './nameable'
-require './capitalize_decorator'
-require './trimmer_decorator'
-require './book'
-require './classroom'
-require './rentals'
-require './student'
+require_relative '../Nameable'
+require_relative '../capitalize_decorator'
+require_relative '../trimmer_decorator'
+require_relative 'Book'
+require_relative 'Classroom'
+require_relative 'Rentals'
+require_relative 'Student'
 
 class Person < Nameable
   attr_accessor :name, :age
