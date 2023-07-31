@@ -24,7 +24,8 @@ class PeopleManager
       can_use_services = gets.chomp.downcase == 'true'
       puts 'Specialization: '
       specialization = gets.chomp.strip
-      @people.push(@person_creator.add_teacher(age: age, name: name, can_use_services: can_use_services, specialization: specialization))
+      @people.push(@person_creator.add_teacher(age: age, name: name, can_use_services: can_use_services,
+                                               specialization: specialization))
     end
 
     puts "\nPerson was created successfully"
