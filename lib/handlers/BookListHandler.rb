@@ -4,7 +4,7 @@ class BookList
     end
     
     def list_all_books
-        @books.map { |_book| puts book_info(book) }
+        @books.map { |_book| puts book_info(_book) }
       end
     
       def list_book_with_idx
