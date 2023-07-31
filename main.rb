@@ -11,7 +11,7 @@ require_relative 'lib/models/Teacher'
 require_relative 'lib/modules/add_person'
 require_relative 'app'
 require_relative 'lib/modules/PrintOptions'
-require_relative 'lib/handlers/PrintOptionsHandler.rb'
+require_relative 'lib/handlers/PrintOptionsHandler'
 require_relative 'ui/OptionsHandler'
 
 $stdout.sync = true

@@ -4,10 +4,6 @@ class App
     @people = []
   end
 
-  def list_all_books
-    @books.map { |book| puts " - #{book.title} by #{book.author}" }
-  end
-
   def list_all_people
     @people.map do |person|
       puts " - [#{person.class.name}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}"
@@ -28,16 +24,6 @@ class App
       @people.push(add_teacher(age, name))
     end
     puts "\nPerson was created succesfully"
-  end
-
-  def create_book
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    book = Book.new(title, author)
-    puts 'The book was added succesfully!'
-    @books.push(book)
   end
 
   def create_rental
