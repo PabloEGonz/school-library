@@ -2,9 +2,9 @@ class BookList
     def initialize(array)
         @books = array
     end
-
-    def 
-        @books.map { |_book| puts book_info }
+    
+    def list_all_books
+        @books.map { |_book| puts book_info(book) }
       end
     
       def list_book_with_idx
