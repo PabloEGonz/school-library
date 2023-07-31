@@ -1,4 +1,4 @@
-require_relative '../handlers/RentalCreatorHandler.rb'
+require_relative '../handlers/RentalCreatorHandler'
 
 class RentalManager
   def initialize(book_manager, people_manager)
@@ -19,7 +19,7 @@ class RentalManager
     print 'Date: '
     date = gets.chomp
 
-    rental = @rental_handler.create_rental(date, book, person)
+    @rental_handler.create_rental(date, book, person)
     puts 'The rental was added succesfully!'
   end
 
