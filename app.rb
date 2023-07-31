@@ -1,4 +1,5 @@
 require_relative 'lib/managers/PeopleManager'
+require_relative 'lib/managers/RentalManager'
 
 class App
   def initialize
