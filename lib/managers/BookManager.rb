@@ -1,5 +1,6 @@
-require '../handlers/BookListHandler'
-require '../handlers/BookCreatorHandler'
+require_relative '../handlers/BookListHandler'
+require_relative '../handlers/BookCreatorHandler'
+
 class BookManager
   def initialize
     @books = []
