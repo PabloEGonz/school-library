@@ -1,33 +1,17 @@
+require_relative 'lib/managers/PeopleManager'
+
 class App
   def initialize
     @books = []
-    @people = []
-  end
-
-  def list_all_books
-    @books.map { |book| puts " - #{book.title} by #{book.author}" }
+    @people_manager = PeopleManager.new
   end
 
   def list_all_people
-    @people.map do |person|
-      puts " - [#{person.class.name}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}"
-    end
+    @people_manager.list_all_people
   end
 
   def create_person
-    puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
-    person = gets.chomp.to_i
-    print 'Age: '
-    age = gets.chomp.to_i
-    print 'Name: '
-    name = gets.chomp
-    case person
-    when 1
-      @people.push(add_student(age, name))
-    when 2
-      @people.push(add_teacher(age, name))
-    end
-    puts "\nPerson was created succesfully"
+    @people_manager.create_person
   end
 
   def create_book
