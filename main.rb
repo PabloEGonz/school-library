@@ -9,7 +9,7 @@ require_relative 'lib/models/Student'
 require_relative 'lib/models/Person'
 require_relative 'lib/models/Teacher'
 require_relative 'lib/modules/add_person'
-require_relative 'app'
+require_relative 'App'
 require_relative 'lib/modules/PrintOptions'
 require_relative 'lib/handlers/PrintOptionsHandler'
 require_relative 'ui/OptionsHandler'
@@ -21,7 +21,7 @@ def main
 
   app = App.new
   print_options_handler = PrintOptionsHandler.new(PrintOptions)
-  option_handler = OptionHandler.new
+  option_handler = OptionHandler.new(app)
 
   loop do
     print_options_handler.print_options
