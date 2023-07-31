@@ -6,6 +6,7 @@ class App
   def initialize
     @books_manager = BookManager.new
     @people_manager = PeopleManager.new
+    @rental_manager = RentalManager.new(@books_manager, @people_manager)
   end
 
   def list_all_books
