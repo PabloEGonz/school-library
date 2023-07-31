@@ -3,20 +3,19 @@ require_relative 'Person'
 class Student < Person
   attr_reader :classroom
 
-  # rubocop:disable Style/OptionalBooleanParameter
-
-  def initialize(age, name = 'Unknown', parent_permission = true, classroom = nil)
-    super(age, name, parent_permission)
-    self.classroom = classroom if classroom
-  end
-  # rubocop:enable Style/OptionalBooleanParameter
-
-  def play_hooky
-    '¯\(ツ)/¯'
+  def initialize(age, name: 'Unknown', parent_permission: true, classroom: 'Unknown')
+    super(age, name: name, parent_permission: parent_permission)
+    @classroom = classroom
   end
 
   def classroom=(classroom)
+    @classroom&.students&.delete(self)
     @classroom = classroom
-    classroom.students.push(self) unless classroom.students.include?(self)
+    classroom.students << self if classroom
+  end
+
+  def play_hooky
+    '¯\\(ツ)/¯'
   end
 end
+

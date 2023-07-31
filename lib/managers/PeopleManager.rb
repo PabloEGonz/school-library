@@ -18,9 +18,13 @@ class PeopleManager
 
     case person_type
     when 1
-      @people.push(@person_creator.add_student(age, name))
+      @people.push(@person_creator.add_student(age: age, name: name))
     when 2
-      @people.push(@person_creator.add_teacher(age, name))
+      puts 'Can use services? (true or false): '
+      can_use_services = gets.chomp.downcase == 'true'
+      puts 'Specialization: '
+      specialization = gets.chomp.strip
+      @people.push(@person_creator.add_teacher(age: age, name: name, can_use_services: can_use_services, specialization: specialization))
     end
 
     puts "\nPerson was created successfully"
