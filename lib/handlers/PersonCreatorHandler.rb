@@ -2,11 +2,11 @@ require_relative '../models/Teacher'
 require_relative '../models/Student'
 
 class PersonCreator
-  def add_student(age:, name:)
-    Student.new(age, name: name)
+  def add_student(age:, name:, can_use_services: true)
+    Student.new(age: age, name: name, parent_permission: can_use_services)
   end
 
-  def add_teacher(age:, name:, can_use_services: true, specialization: 'General')
-    Teacher.new(age, name: name, can_use_services: can_use_services, specialization: specialization)
+  def add_teacher(age:, name:, specialization:)
+    Teacher.new(age: age, name: name, specialization: specialization)
   end
 end
