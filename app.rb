@@ -15,28 +15,11 @@ class App
   end
 
   def create_rental
-    puts 'Select a book from the following list'
-    @books.map.with_index do |book, i|
-      puts "(#{i + 1}) #{book.title} by #{book.author}"
-    end
-    book = @books[gets.chomp.to_i - 1]
-    puts 'Select a person from the following list by number (not ID)'
-    @people.map.with_index do |person, i|
-      puts "(#{i + 1}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}"
-    end
-    person = @people[gets.chomp.to_i - 1]
-    print 'Date: '
-    date = gets.chomp
-    Rental.new(date, book, person)
-    puts 'The rental was added succesfully!'
+    @rental_manager.create_rental
   end
 
-  def list_retals_from
-    print 'ID of the person: '
-    id = gets.chomp.to_i
-    i = @people.find_index { |p| p.id == id }
-    person = @people[i]
-    person.rentals.map { |rental| puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author}" }
+  def list_rentals_from_person_id
+    @rental_manager.list_rentals_from_person_id
   end
 
   def exit
