@@ -24,4 +24,8 @@ class BookManager
   def list_books_idx
     @list.list_book_with_idx
   end
+
+  def get_book_by_index(idx)
+    @books[idx]
+  end
 end
