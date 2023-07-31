@@ -9,7 +9,7 @@ class RentalManager
 
   def create_rental
     puts 'Select a book from the following list'
-    @book_manager.list_all_books_with_index
+    @book_manager.list_books_idx
     book = @book_manager.get_book_by_index(gets.chomp.to_i - 1)
 
     puts 'Select a person from the following list by number (not ID)'
