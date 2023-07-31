@@ -11,22 +11,20 @@ class PeopleManager
   def create_person
     puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
     person_type = gets.chomp.to_i
+
     print 'Age: '
     age = gets.chomp.to_i
+
     print 'Name: '
     name = gets.chomp
 
     case person_type
     when 1
-      if age < 18
-        puts 'Can use services? (true or false): '
-        can_use_services = gets.chomp.downcase == 'true'
-        @people.push(@person_creator.add_student(age: age, name: name, can_use_services: can_use_services))
-      else
-        @people.push(@person_creator.add_student(age: age, name: name, can_use_services: true))
-      end
+      print 'Can use services? (true or false): '
+      can_use_services = gets.chomp.downcase == 'true'
+      @people.push(@person_creator.add_student(age: age, name: name, can_use_services: can_use_services))
     when 2
-      puts 'Specialization: '
+      print 'Specialization: '
       specialization = gets.chomp.strip
       @people.push(@person_creator.add_teacher(age: age, name: name, specialization: specialization))
     end
