@@ -35,4 +35,20 @@ class RentalManager
 
     @rental_handler.list_rentals_from(person)
   end
+  
+  def save_rentals_data
+    rentals_data = @book_manager.books.flat_map do |book|
+      book.rentals.map do |rental|
+        {
+          id: rental.id,
+          date: rental.date,
+          book_id: book.id,
+          person_id: rental.person.id
+        }
+      end
+    end
+  
+    File.write('rentals.json', JSON.pretty_generate(rentals_data))
+  end
+
 end
