@@ -55,7 +55,7 @@ class App
   def load_books
     @books_manager.load_books('books.json')
   end
-  
+
   def load_rentals
     @rental_manager.load_rentals_data('rentals.json')
   end

@@ -105,7 +105,6 @@ class PeopleManager
         name: person.name,
         age: person.age,
         parent_permission: person.parent_permission,
-        rentals: person.rentals.map(&:id),
         classroom: person.respond_to?(:classroom) ? person.classroom : nil,
         specialization: person.respond_to?(:specialization) ? person.specialization : nil
       }

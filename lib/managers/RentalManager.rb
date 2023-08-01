@@ -33,26 +33,25 @@ class RentalManager
     print 'ID of the person: '
     id = gets.chomp.to_i
     person = @people_manager.get_person_by_id(id)
-  
+
     if person.nil?
       puts "No person found with ID #{id}"
     else
       @rental_handler.list_rentals_from(person)
     end
   end
-  
 
   def load_rentals_data(path)
     rentals = @get_data.load_data(path, 'rentals')
     return unless rentals
-  
+
     rentals.each do |rental_data|
       book = @book_manager.get_book_by_id(rental_data['book_id'])
       person = @people_manager.get_person_by_id(rental_data['person_id'])
       @rental_handler.create_rental(rental_data['date'], book, person)
     end
   end
-  
+
   def save_rentals_data
     rentals_data = @book_manager.books.flat_map do |book|
       book.rentals.map do |rental|
@@ -64,8 +63,7 @@ class RentalManager
         }
       end
     end
-  
+
     File.write('rentals.json', JSON.pretty_generate(rentals_data))
   end
-
 end
