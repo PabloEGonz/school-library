@@ -48,8 +48,7 @@ class BookManager
     books = @books.map do |book|
       {
         title: book.title,
-        author: book.author,
-        rentals: book.rentals
+        author: book.author
       }
     end
     File.write('books.json', JSON.pretty_generate(books))
