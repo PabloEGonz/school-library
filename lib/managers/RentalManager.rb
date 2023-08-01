@@ -6,7 +6,8 @@ class RentalManager
     @book_manager = book_manager
     @people_manager = people_manager
     @rental_handler = RentalHandler.new
-    @validator = Validator.new
+    @validator = Validator.new.
+    @get_data = GetData.new
   end
 
   def create_rental
