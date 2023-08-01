@@ -8,7 +8,6 @@ class App
     @books_manager = BookManager.new
     @people_manager = PeopleManager.new
     @rental_manager = RentalManager.new(@books_manager, @people_manager)
-    load_data
   end
 
   def list_all_books
@@ -48,14 +47,7 @@ class App
   private
 
   def load_people
-    if File.exist?('people.json')
-      puts 'Loading people data...'
-      people_data = JSON.parse(File.read('people.json'))
-      @people_manager.load_people(people_data)
-      puts 'People data loaded successfully!'
-    else
-      puts 'People data file not found. Starting with an empty people list.'
-    end
+    @people_manager.load_people('people.json')
   end
 
   def load_books
