@@ -28,7 +28,7 @@ class PeopleManager
       if age < 18
         puts 'Has parent permission? [Y/N]: '
         parent_permission = gets.chomp.downcase
-        until @Validator.boolean(parent_permission)
+        until @validator.boolean(parent_permission)
           puts 'Please enter a valid value  [Y/N]: '
           parent_permission = gets.chomp.downcase
         end
