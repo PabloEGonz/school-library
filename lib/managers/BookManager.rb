@@ -1,11 +1,13 @@
 require_relative '../handlers/BookListHandler'
 require_relative '../handlers/BookCreatorHandler'
+require_relative '../models/GetData'
 
 class BookManager
   def initialize
     @books = []
     @book = BookCreator.new
     @list = BookList.new(@books)
+    @get_data = GetData.new
   end
 
   def add_book
@@ -30,15 +32,13 @@ class BookManager
   end
 
   def load_books(path)
-    if File.exist?(path)
-      puts 'Loading books data...'
-      books = JSON.parse(File.read(path))
-      puts 'Books data loaded successfully!'
+    books = @get_data.load_data(path)
+    if books
+      books.map do |book|
+        @books << @book.create_book(book['title'], book['author'], book['rentals'])
+      end
     else
       puts 'Books data file not found. Starting with an empty people list.'
-    end
-    books.map do |book|
-      @books << @book.create_book(book['title'], book['author'], book['rentals'])
     end
   end
 
