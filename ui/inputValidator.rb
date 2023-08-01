@@ -8,7 +8,7 @@ class Validator
     end
 
     def date(input)
-        /^\d{4}-\d{2}-\d{2}$/.math?(input)
+        /^\d{4}-\d{2}-\d{2}$/.match?(input)
     end
 end
  
