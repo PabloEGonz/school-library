@@ -38,7 +38,7 @@ class BookManager
       puts 'Books data file not found. Starting with an empty people list.'
     end
     books.map do |book|
-    @books << @book.create_book(book['title'], book['author'], book['rentals'])
+      @books << @book.create_book(book['title'], book['author'], book['rentals'])
     end
   end
 
