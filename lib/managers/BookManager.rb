@@ -32,7 +32,7 @@ class BookManager
   end
 
   def load_books(path)
-    books = @get_data.load_data(path)
+    books = @get_data.load_data(path, 'books')
     if books
       books.map do |book|
         @books << @book.create_book(book['title'], book['author'], book['rentals'])

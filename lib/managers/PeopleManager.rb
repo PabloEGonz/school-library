@@ -1,6 +1,8 @@
 require_relative '../handlers/PeopleListHandler'
 require_relative '../handlers/PersonCreatorHandler'
 require_relative '../../ui/inputValidator'
+require_relative '../models/GetData'
+require 'json'
 
 class PeopleManager
   def initialize
@@ -8,6 +10,7 @@ class PeopleManager
     @person_creator = PersonCreatorHandler.new
     @people_lister = PeopleListHandler.new(@people)
     @validator = Validator.new
+    @get_data = GetData.new
   end
 
   def create_person
@@ -60,11 +63,10 @@ class PeopleManager
     @people[index]
   end
 
-  def load_people(file_path)
-    if File.exist?(file_path)
-      puts "Loading people data from #{file_path}..."
-      people_data = JSON.parse(File.read(file_path))
-      new_people = people_data.map do |person_data|
+  def load_people(path)
+    people = @get_data.load_data(path, 'people')
+    if people
+      people.each do |person_data|
         class_type = person_data['class']
         person =
           case class_type
@@ -88,13 +90,10 @@ class PeopleManager
           person.classroom = person_data['classroom']
         end
 
-        person
-      end.compact
-
-      @people.concat(new_people)
-      puts 'People data loaded successfully!'
+        @people << person
+      end
     else
-      puts "People data file (#{file_path}) not found. Starting with an empty people list."
+      puts 'People data file not found. Starting with an empty people list.'
     end
   end
 

@@ -4,7 +4,7 @@ require_relative '../models/Student'
 class PersonCreatorHandler
   def initialize
     @people = []
-    # @used_ids = Set.new
+    @used_ids = Set.new
   end
 
   def add_student(age:, name:, parent_permission: true)
