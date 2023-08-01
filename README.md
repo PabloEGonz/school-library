@@ -89,12 +89,23 @@ Install this project with:
 - Twitter: [@PabloEzGon](https://twitter.com/PabloEzGon)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/pablo-ezequiel-gonz%C3%A1lez-ramos-b9b854265)
 
+👤 **Ruben Cuervo**
+
+- GitHub: [@Jrmcuervom](https://github.com/Jrmcuervo)
+- Twitter: [@Jrmcuervom](https://twitter.com/Jrcuervom)
+- LinkedIn: [Jrmcuervom](https://www.linkedin.com/in/jrmcuervom)
+
+👤 **Romans S.**
+
+- GitHub: [@romans-adi](https://github.com/romans-adi/)
+- Twitter: [@obj583](https://twitter.com/obj583/)
+- LinkedIn: [Romans Špiļaks](https://www.linkedin.com/in/obj513/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Create tests
-- [ ] Add basic UI
+- [ ] Test Driven Development (TDD): Encourage TDD practices, where new features are first defined by writing tests and then implemented to pass those tests.   This approach ensures that code changes are well-tested from the start.
 - [ ] Improve UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
