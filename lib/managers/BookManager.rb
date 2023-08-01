@@ -29,7 +29,14 @@ class BookManager
     @books[idx]
   end
 
-  def load_books(books)
+  def load_books(path)
+    if File.exist?(path)
+      puts 'Loading books data...'
+      books = JSON.parse(File.read(path))
+      puts 'Books data loaded successfully!'
+    else
+      puts 'Books data file not found. Starting with an empty people list.'
+    end
     books.map do |book|
     @books << @book.create_book(book['title'], book['author'], book['rentals'])
     end
