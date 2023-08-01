@@ -1,5 +1,5 @@
 require_relative '../handlers/RentalCreatorHandler'
-require_relative '../../ui/inputValidator.rb'
+require_relative '../../ui/inputValidator'
 
 class RentalManager
   def initialize(book_manager, people_manager)

@@ -1,6 +1,6 @@
 require_relative '../handlers/PeopleListHandler'
 require_relative '../handlers/PersonCreatorHandler'
-require_relative '../../ui/inputValidator.rb'
+require_relative '../../ui/inputValidator'
 
 class PeopleManager
   def initialize
