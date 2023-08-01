@@ -6,7 +6,7 @@ class RentalManager
     @book_manager = book_manager
     @people_manager = people_manager
     @rental_handler = RentalHandler.new
-    @Validator = Validator.new
+    @validator = Validator.new
   end
 
   def create_rental
@@ -20,7 +20,7 @@ class RentalManager
 
     print 'Date: '
     date = gets.chomp
-    while @Validator.date(date)
+    until @validator.date(date)
       puts 'Please insert a valid date format -YYYY-MM-DD-'
       date = gets.chomp
     end
