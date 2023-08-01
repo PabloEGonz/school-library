@@ -35,6 +35,17 @@ class RentalManager
 
     @rental_handler.list_rentals_from(person)
   end
+
+  def load_rentals_data(path)
+    rentals = @get_data.load_data(path, 'rentals')
+    return unless rentals
+  
+    rentals.each do |rental_data|
+      book = @book_manager.get_book_by_id(rental_data['book_id'])
+      person = @people_manager.get_person_by_id(rental_data['person_id'])
+      @rental_handler.create_rental(rental_data['date'], book, person)
+    end
+  end
   
   def save_rentals_data
     rentals_data = @book_manager.books.flat_map do |book|
