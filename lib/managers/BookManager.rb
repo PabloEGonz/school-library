@@ -31,7 +31,7 @@ class BookManager
 
   def load_books(books)
     @books = books.map do |book|
-    @book.create_book(book.title, book.author, book.rentals)
+      @book.create_book(book.title, book.author, book.rentals)
     end
   end
 

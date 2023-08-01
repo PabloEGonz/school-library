@@ -60,36 +60,42 @@ class PeopleManager
     @people[index]
   end
 
-  def load_people(people_data)
-    puts "Loading people_data: #{people_data}"
-    new_people = people_data.map do |person_data|
-      class_type = person_data['class']
-      person =
-        case class_type
-        when 'Student'
-          Student.new(
-            id: person_data['id'],
-            name: person_data['name'],
-            age: person_data['age'],
-            parent_permission: person_data['parent_permission']
-          )
-        when 'Teacher'
-          Teacher.new(
-            id: person_data['id'],
-            age: person_data['age'],
-            name: person_data['name'],
-            specialization: person_data['specialization']
-          )
+  def load_people(file_path)
+    if File.exist?(file_path)
+      puts "Loading people data from #{file_path}..."
+      people_data = JSON.parse(File.read(file_path))
+      new_people = people_data.map do |person_data|
+        class_type = person_data['class']
+        person =
+          case class_type
+          when 'Student'
+            Student.new(
+              id: person_data['id'],
+              name: person_data['name'],
+              age: person_data['age'],
+              parent_permission: person_data['parent_permission']
+            )
+          when 'Teacher'
+            Teacher.new(
+              id: person_data['id'],
+              age: person_data['age'],
+              name: person_data['name'],
+              specialization: person_data['specialization']
+            )
+          end
+
+        unless person_data['classroom'].nil? || !person.respond_to?(:classroom=)
+          person.classroom = person_data['classroom']
         end
 
-      unless person_data['classroom'].nil? || !person.respond_to?(:classroom=)
-        person.classroom = person_data['classroom']
-      end
+        person
+      end.compact
 
-      person
-    end.compact
-
-    @people.concat(new_people)
+      @people.concat(new_people)
+      puts 'People data loaded successfully!'
+    else
+      puts "People data file (#{file_path}) not found. Starting with an empty people list."
+    end
   end
 
   def save_people_data
