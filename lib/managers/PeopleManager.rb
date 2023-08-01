@@ -7,7 +7,7 @@ class PeopleManager
     @people = []
     @person_creator = PersonCreator.new
     @people_lister = PeopleListHandler.new(@people)
-    @Validator = Validator.new
+    @validator = Validator.new
   end
 
   def create_person
@@ -15,7 +15,7 @@ class PeopleManager
     person_type = gets.chomp.to_i
     print 'Age: '
     age_s = gets.chomp
-    until @Validator.number(age_s)
+    until @validator.number(age_s)
       puts 'Please enter a valid age (numeric value): '
       age_s = gets.chomp
     end
