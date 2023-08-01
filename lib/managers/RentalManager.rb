@@ -29,16 +29,21 @@ class RentalManager
     @rental_handler.create_rental(date, book, person)
 
     rental = Rental.new(date, book, person)
-    @rentals << rental
+    @rentals << {
+      date: rental.date,
+      book_title: rental.book.title,
+      book_author: rental.book.author,
+      person_id: rental.person.id
+    }
     puts 'The rental was added succesfully!'
   end
 
   def list_rentals_from_person_id
     print 'ID of the person: '
     id = gets.chomp.to_i
-    person = @people_manager.get_person_by_id(id)
+    person = @rentals.select { |rental| rental['person_id'] == id || rental.person_id == id }
 
-    if person.nil?
+    if person.empty?
       puts "No person found with ID #{id}"
     else
       @rental_handler.list_rentals_from(person)
@@ -49,22 +54,10 @@ class RentalManager
     rentals = @get_data.load_data(path, 'rentals')
     return unless rentals
 
-    rentals.each do |rental_data|
-      book = @book_manager.get_book_by_index(rental_data['book_id'])
-      person = @people_manager.get_person_by_id(rental_data['person_id'])
-      @rental_handler.create_rental(rental_data['date'], book, person)
-    end
+    @rentals = rentals
   end
 
   def save_rentals_data
-    rentals_data = @rentals.map do |rental|
-      {
-        date: rental.date,
-        book: rental.book.author,
-        person: rental.person.name
-      }
-    end
-
-    File.write('rentals.json', JSON.pretty_generate(rentals_data))
+    File.write('rentals.json', JSON.pretty_generate(@rentals))
   end
 end
