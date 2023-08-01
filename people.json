@@ -1,0 +1,122 @@
+[
+  {
+    "class": "Student",
+    "id": 635,
+    "name": "444",
+    "age": 44,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 297,
+    "name": "22",
+    "age": 333,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 635,
+    "name": "444",
+    "age": 44,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 297,
+    "name": "22",
+    "age": 333,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 871,
+    "name": "44",
+    "age": 44,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 635,
+    "name": "444",
+    "age": 44,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 297,
+    "name": "22",
+    "age": 333,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 635,
+    "name": "444",
+    "age": 44,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 297,
+    "name": "22",
+    "age": 333,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  },
+  {
+    "class": "Student",
+    "id": 871,
+    "name": "44",
+    "age": 44,
+    "parent_permission": null,
+    "rentals": [
+
+    ],
+    "classroom": null,
+    "specialization": null
+  }
+]

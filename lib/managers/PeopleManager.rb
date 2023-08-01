@@ -62,7 +62,7 @@ class PeopleManager
 
   def load_people(people_data)
     puts "Loading people_data: #{people_data}"
-    @people = people_data.map do |person_data|
+    new_people = people_data.map do |person_data|
       class_type = person_data['class']
       person =
         case class_type
@@ -88,6 +88,8 @@ class PeopleManager
 
       person
     end.compact
+
+    @people.concat(new_people)
   end
 
   def save_people_data

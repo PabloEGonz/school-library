@@ -16,7 +16,6 @@ def main
   loop do
     print_options_handler.print_options
     option = gets.chomp.to_i
-    puts "Selected option: #{option}"
     option_handler.handle_option(option)
   end
 end
