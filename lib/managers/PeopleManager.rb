@@ -1,35 +1,46 @@
 require_relative '../handlers/PeopleListHandler'
 require_relative '../handlers/PersonCreatorHandler'
+require_relative '../../ui/inputValidator.rb'
 
 class PeopleManager
   def initialize
     @people = []
     @person_creator = PersonCreator.new
     @people_lister = PeopleListHandler.new(@people)
+    @Validator = Validator.new
   end
 
   def create_person
     puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
     person_type = gets.chomp.to_i
     print 'Age: '
-    age = gets.chomp.to_i
+    age_s = gets.chomp
+    until @Validator.number(age_s)
+      puts 'Please enter a valid age (numeric value): '
+      age_s = gets.chomp
+    end
+    age = age_s.to_i
     print 'Name: '
     name = gets.chomp
 
     case person_type
     when 1
-      can_use_services = true
       if age < 18
-        puts 'Can use services? (true or false): '
-        can_use_services = gets.chomp.downcase == 'true'
+        puts 'Has parent permission? [Y/N]: '
+        parent_permission = gets.chomp.downcase
+        until @Validator.boolean(parent_permission)
+          puts 'Please enter a valid value  [Y/N]: '
+          parent_permission = gets.chomp.downcase
+        end
       end
-      @people.push(@person_creator.add_student(age: age, name: name, can_use_services: can_use_services))
+      @people.push(@person_creator.add_student(age: age, name: name, parent_permission: parent_permission))
     when 2
       puts 'Specialization: '
       specialization = gets.chomp.strip
       @people.push(@person_creator.add_teacher(age: age, name: name, specialization: specialization))
+    else
+      puts 'Invalid person type. Use (1) for student or (2) for teacher.'
     end
-
     puts "\nPerson was created successfully"
   end
 

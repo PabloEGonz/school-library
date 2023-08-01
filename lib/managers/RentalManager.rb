@@ -1,10 +1,12 @@
 require_relative '../handlers/RentalCreatorHandler'
+require_relative '../../ui/inputValidator.rb'
 
 class RentalManager
   def initialize(book_manager, people_manager)
     @book_manager = book_manager
     @people_manager = people_manager
     @rental_handler = RentalHandler.new
+    @Validator = Validator.new
   end
 
   def create_rental
@@ -18,7 +20,10 @@ class RentalManager
 
     print 'Date: '
     date = gets.chomp
-
+    while @Validator.date(date)
+      puts 'Please insert a valid date format -YYYY-MM-DD-'
+      date = gets.chomp
+    end
     @rental_handler.create_rental(date, book, person)
     puts 'The rental was added succesfully!'
   end
