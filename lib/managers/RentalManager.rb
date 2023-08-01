@@ -33,9 +33,14 @@ class RentalManager
     print 'ID of the person: '
     id = gets.chomp.to_i
     person = @people_manager.get_person_by_id(id)
-
-    @rental_handler.list_rentals_from(person)
+  
+    if person.nil?
+      puts "No person found with ID #{id}"
+    else
+      @rental_handler.list_rentals_from(person)
+    end
   end
+  
 
   def load_rentals_data(path)
     rentals = @get_data.load_data(path, 'rentals')
