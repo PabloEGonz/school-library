@@ -37,6 +37,7 @@ class App
 
   def save_data
     save_people
+    save_books
   end
 
   def load_data

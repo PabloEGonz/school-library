@@ -30,8 +30,8 @@ class BookManager
   end
 
   def load_books(books)
-    @books = books.map do |book|
-    @book.create_book(book.title, book.author, book.rentals)
+    books.map do |book|
+    @books << @book.create_book(book['title'], book['author'], book['rentals'])
     end
   end
 
