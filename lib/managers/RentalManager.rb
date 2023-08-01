@@ -8,6 +8,7 @@ class RentalManager
     @rental_handler = RentalHandler.new
     @validator = Validator.new
     @get_data = GetData.new
+    @rentals = []
   end
 
   def create_rental
@@ -26,6 +27,9 @@ class RentalManager
       date = gets.chomp
     end
     @rental_handler.create_rental(date, book, person)
+
+    rental = Rental.new(date, book, person)
+    @rentals << rental
     puts 'The rental was added succesfully!'
   end
 
@@ -46,22 +50,19 @@ class RentalManager
     return unless rentals
 
     rentals.each do |rental_data|
-      book = @book_manager.get_book_by_id(rental_data['book_id'])
+      book = @book_manager.get_book_by_index(rental_data['book_id'])
       person = @people_manager.get_person_by_id(rental_data['person_id'])
       @rental_handler.create_rental(rental_data['date'], book, person)
     end
   end
 
   def save_rentals_data
-    rentals_data = @book_manager.books.flat_map do |book|
-      book.rentals.map do |rental|
-        {
-          id: rental.id,
-          date: rental.date,
-          book_id: book.id,
-          person_id: rental.person.id
-        }
-      end
+    rentals_data = @rentals.map do |rental|
+      {
+        date: rental.date,
+        book: rental.book.author,
+        person: rental.person.name
+      }
     end
 
     File.write('rentals.json', JSON.pretty_generate(rentals_data))

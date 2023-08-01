@@ -3,6 +3,8 @@ require_relative '../handlers/BookCreatorHandler'
 require_relative '../models/GetData'
 
 class BookManager
+  attr_accessor :books
+
   def initialize
     @books = []
     @book = BookCreator.new
