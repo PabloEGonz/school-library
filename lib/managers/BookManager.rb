@@ -28,4 +28,21 @@ class BookManager
   def get_book_by_index(idx)
     @books[idx]
   end
+
+  def load_books(books)
+    @books = books.map do |book|
+    @book.create_book(book.title, book.author, book.rentals)
+    end
+  end
+
+  def save_books_data
+    books = @books.map do |book|
+      {
+        title: book.title,
+        author: book.author,
+        rentals: book.rentals
+      }
+    end
+    File.write('books.json', JSON.pretty_generate(books))
+  end
 end

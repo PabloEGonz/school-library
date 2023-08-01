@@ -41,6 +41,7 @@ class App
 
   def load_data
     load_people
+    load_books
   end
 
   private
@@ -56,7 +57,22 @@ class App
     end
   end
 
+  def load_books
+    if File.exist?('books.json')
+      puts 'Loading books data...'
+      books = JSON.parse(File.read('books.json'))
+      @books_manager.load_books(books)
+      puts 'Books data loaded successfully!'
+    else
+      puts 'Books data file not found. Starting with an empty people list.'
+    end
+  end
+
   def save_people
     @people_manager.save_people_data
+  end
+
+  def save_books
+    @books_manager.save_books_data
   end
 end
