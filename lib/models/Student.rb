@@ -1,17 +1,17 @@
 require_relative 'Person'
 
 class Student < Person
-  attr_reader :classroom
+  attr_accessor :id, :name, :age, :parent_permission
 
-  def initialize(age:, parent_permission:, name: 'Unknown', classroom: 'Unknown')
+  def initialize(id:, age:, name:, parent_permission: true)
     super(age, name: name, parent_permission: parent_permission)
-    @classroom = classroom
+    @id = id
   end
 
   def classroom=(classroom)
     @classroom&.students&.delete(self)
     @classroom = classroom
-    classroom.students << self if classroom
+    classroom&.students&.<< self
   end
 
   def play_hooky
