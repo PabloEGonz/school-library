@@ -37,6 +37,7 @@ class App
   def save_data
     save_people
     save_books
+    save_rentals
   end
 
   def load_data
@@ -60,5 +61,9 @@ class App
 
   def save_books
     @books_manager.save_books_data
+  end
+
+  def save_rentals
+    @rental_manager.save_rentals_data
   end
 end
