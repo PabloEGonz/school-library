@@ -43,6 +43,7 @@ class App
   def load_data
     load_people
     load_books
+    load_rentals
   end
 
   private
@@ -53,6 +54,10 @@ class App
 
   def load_books
     @books_manager.load_books('books.json')
+  end
+  
+  def load_rentals
+    @rental_manager.load_rentals_data('rentals.json')
   end
 
   def save_people
