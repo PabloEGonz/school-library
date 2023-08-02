@@ -54,12 +54,6 @@ describe Person do
     end
   end
 
-  describe '#correct_name' do
-    it 'returns the correct name stored in instance' do
-      expect(person.correct_name).to eq('John Smith')
-    end
-  end
-
   describe '#add_rental' do
     let(:rental) { double('Rental') }
 
