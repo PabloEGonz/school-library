@@ -17,7 +17,7 @@ describe Book do
   context 'Adding a rental to the existing book' do
     it 'Create a rental' do
       book = Book.new('Got', 'George')
-      person = Student.new(age: 15, name: 'Max', parent_permission: false)
+      person = Student.new(id: 1, age: 15, name: 'Max', parent_permission: false)
       date = '2020-12-12'
 
       book.add_rental(date, person)
