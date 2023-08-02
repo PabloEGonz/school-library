@@ -2,50 +2,83 @@ require 'rspec'
 
 require_relative 'spec_helper'
 
-RSpec.describe Person do
-  subject(:person) { Person.new(20, name: 'John Doe', parent_permission: true) }
+describe Person do
+  let(:person) { Person.new(14, name: 'John Smith', parent_permission: false) }
 
   describe '#initialize' do
-    it 'should set the age' do
-      expect(person.age).to eq(20)
+    it 'creates a new Person object' do
+      expect(person).to be_an_instance_of(Person)
     end
 
-    it 'should set the name' do
-      expect(person.name).to eq('John Doe')
+    it 'has a valid ID' do
+      expect(person.id).to be_between(1, 1000)
     end
 
-    it 'should set parent_permission to true by default' do
-      expect(person.parent_permission).to be true
+    it 'sets the name correctly' do
+      expect(person.name).to eq('John Smith')
     end
 
-    it 'should set a random ID' do
-      expect(person.id).to be_a(Integer)
+    it 'sets the age correctly' do
+      expect(person.age).to eq(14)
     end
 
-    it 'should set rentals to an empty array' do
-      expect(person.rentals).to eq([])
+    it 'initializes rentals as an empty array' do
+      expect(person.rentals).to be_an_instance_of(Array)
+      expect(person.rentals).to be_empty
     end
   end
 
-  describe '#of_age?' do
-    it 'should return true if the age is 18 or older' do
-      person = Person.new(18)
-      expect(person.of_age?).to be true
+  describe '#can_use_services?' do
+    context 'when person is of age' do
+      let(:person) { Person.new(100, name: 'Old John', parent_permission: true) }
+
+      it 'returns true' do
+        expect(person.can_use_services?).to be_truthy
+      end
     end
 
-    it 'should return false if the age is under 18' do
-      person = Person.new(17)
-      expect(person.of_age?).to be false
+    context 'when person is not of age but has parent permission' do
+      let(:person) { Person.new(16, name: 'Jennifer Ruby', parent_permission: true) }
+
+      it 'returns true' do
+        expect(person.can_use_services?).to be_truthy
+      end
+    end
+
+    context 'when person is not of age and does not have parent permission' do
+      let(:person) { Person.new(16, name: 'Alice Malber', parent_permission: false) }
+
+      it 'returns false' do
+        expect(person.can_use_services?).to be_falsey
+      end
+    end
+  end
+
+  describe '#correct_name' do
+    it 'returns the correct name stored in instance' do
+      expect(person.correct_name).to eq('John Smith')
     end
   end
 
   describe '#add_rental' do
-    it 'should add the rental to the rentals array' do
-      # tomorrow
+    let(:rental) { double('Rental') }
+
+    it 'adds the rental to the rentals array and sets the person attribute of the rental' do
+      expect(rental).to receive(:person=).with(person)
+      person.add_rental(rental)
+      expect(person.rentals).to include(rental)
+    end
+  end
+
+  describe 'private method #of_age?' do
+    it 'returns true when age is 18 or above' do
+      adult_person = Person.new(100, name: 'Old John', parent_permission: true)
+      expect(adult_person.send(:of_age?)).to be_truthy
     end
 
-    it 'should set the rental\'s person to self' do
-      # tomorrow
+    it 'returns false when age is below 18' do
+      underage_person = Person.new(15, name: 'Young John', parent_permission: true)
+      expect(underage_person.send(:of_age?)).to be_falsey
     end
   end
 end
