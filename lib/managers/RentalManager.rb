@@ -41,7 +41,7 @@ class RentalManager
   def list_rentals_from_person_id
     print 'ID of the person: '
     id = gets.chomp.to_i
-    person = @rentals.select { |rental| rental['person_id'] == id || rental.person_id == id }
+    person = @rentals.select { |rental| rental['person_id'] == id || rental['person_id'] == id }
 
     if person.empty?
       puts "No person found with ID #{id}"
