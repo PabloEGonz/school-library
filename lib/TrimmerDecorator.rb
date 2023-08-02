@@ -1,7 +1,10 @@
 require_relative 'BaseDecorator'
 
 class TrimmerDecorator < Decorator
+  def initialize(name)
+    super(name)
+  end
   def correct_name
-    @nameable.correct_name[0...10]
+    @nameable[0...10]
   end
 end
