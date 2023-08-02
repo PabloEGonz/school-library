@@ -37,7 +37,7 @@ class BookManager
     books = @get_data.load_data(path, 'books')
     if books
       books.map do |book|
-        @books << @book.create_book(book['title'], book['author'], book['rentals'])
+        @books << @book.create_book(book['title'], book['author'])
       end
     else
       puts 'Books data file not found. Starting with an empty people list.'
