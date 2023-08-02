@@ -1,4 +1,4 @@
-require_relative 'Rentals'
+require_relative 'Rental'
 
 class Book
   attr_accessor :title, :author
