@@ -26,14 +26,13 @@ class RentalManager
       puts 'Please insert a valid date format -YYYY-MM-DD-'
       date = gets.chomp
     end
-    @rental_handler.create_rental(date, book, person)
 
     rental = Rental.new(date, book, person)
     @rentals << {
-      date: rental.date,
-      book_title: rental.book.title,
-      book_author: rental.book.author,
-      person_id: rental.person.id
+      'date' => rental.date,
+      'book_title' => rental.book.title,
+      'book_author' => rental.book.author,
+      'person_id'  => rental.person.id
     }
     puts 'The rental was added succesfully!'
   end
@@ -41,10 +40,10 @@ class RentalManager
   def list_rentals_from_person_id
     print 'ID of the person: '
     id = gets.chomp.to_i
-    person = @rentals.select { |rental| rental['person_id'] == id || rental['person_id'] == id }
+    person = @rentals.select { |rental| rental['person_id'] == id }
 
     if person.empty?
-      puts "No person found with ID #{id}"
+      puts "No rentals found under ID #{id}"
     else
       @rental_handler.list_rentals_from(person)
     end
