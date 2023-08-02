@@ -32,7 +32,7 @@ class RentalManager
       'date' => rental.date,
       'book_title' => rental.book.title,
       'book_author' => rental.book.author,
-      'person_id'  => rental.person.id
+      'person_id' => rental.person.id
     }
     puts 'The rental was added succesfully!'
   end
