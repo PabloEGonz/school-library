@@ -7,6 +7,8 @@ class RentalManager
     @people_manager = people_manager
     @rental_handler = RentalHandler.new
     @validator = Validator.new
+    @get_data = GetData.new
+    @rentals = []
   end
 
   def create_rental
@@ -24,15 +26,37 @@ class RentalManager
       puts 'Please insert a valid date format -YYYY-MM-DD-'
       date = gets.chomp
     end
-    @rental_handler.create_rental(date, book, person)
+
+    rental = Rental.new(date, book, person)
+    @rentals << {
+      'date' => rental.date,
+      'book_title' => rental.book.title,
+      'book_author' => rental.book.author,
+      'person_id' => rental.person.id
+    }
     puts 'The rental was added succesfully!'
   end
 
   def list_rentals_from_person_id
     print 'ID of the person: '
     id = gets.chomp.to_i
-    person = @people_manager.get_person_by_id(id)
+    person = @rentals.select { |rental| rental['person_id'] == id }
 
-    @rental_handler.list_rentals_from(person)
+    if person.empty?
+      puts "No rentals found under ID #{id}"
+    else
+      @rental_handler.list_rentals_from(person)
+    end
+  end
+
+  def load_rentals_data(path)
+    rentals = @get_data.load_data(path, 'rentals')
+    return unless rentals
+
+    @rentals = rentals
+  end
+
+  def save_rentals_data
+    File.write('rentals.json', JSON.pretty_generate(@rentals))
   end
 end

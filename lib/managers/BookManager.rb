@@ -1,11 +1,15 @@
 require_relative '../handlers/BookListHandler'
 require_relative '../handlers/BookCreatorHandler'
+require_relative '../models/GetData'
 
 class BookManager
+  attr_accessor :books
+
   def initialize
     @books = []
     @book = BookCreator.new
     @list = BookList.new(@books)
+    @get_data = GetData.new
   end
 
   def add_book
@@ -27,5 +31,26 @@ class BookManager
 
   def get_book_by_index(idx)
     @books[idx]
+  end
+
+  def load_books(path)
+    books = @get_data.load_data(path, 'books')
+    if books
+      books.map do |book|
+        @books << @book.create_book(book['title'], book['author'])
+      end
+    else
+      puts 'Books data file not found. Starting with an empty people list.'
+    end
+  end
+
+  def save_books_data
+    books = @books.map do |book|
+      {
+        title: book.title,
+        author: book.author
+      }
+    end
+    File.write('books.json', JSON.pretty_generate(books))
   end
 end

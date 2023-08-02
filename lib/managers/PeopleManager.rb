@@ -1,13 +1,16 @@
 require_relative '../handlers/PeopleListHandler'
 require_relative '../handlers/PersonCreatorHandler'
 require_relative '../../ui/inputValidator'
+require_relative '../models/GetData'
+require 'json'
 
 class PeopleManager
   def initialize
     @people = []
-    @person_creator = PersonCreator.new
+    @person_creator = PersonCreatorHandler.new
     @people_lister = PeopleListHandler.new(@people)
     @validator = Validator.new
+    @get_data = GetData.new
   end
 
   def create_person
@@ -58,5 +61,55 @@ class PeopleManager
 
   def get_person_by_index(index)
     @people[index]
+  end
+
+  def load_people(path)
+    people = @get_data.load_data(path, 'people')
+    if people
+      people.each do |person_data|
+        class_type = person_data['class']
+        person =
+          case class_type
+          when 'Student'
+            Student.new(
+              id: person_data['id'],
+              name: person_data['name'],
+              age: person_data['age'],
+              parent_permission: person_data['parent_permission']
+            )
+          when 'Teacher'
+            Teacher.new(
+              id: person_data['id'],
+              age: person_data['age'],
+              name: person_data['name'],
+              specialization: person_data['specialization']
+            )
+          end
+
+        unless person_data['classroom'].nil? || !person.respond_to?(:classroom=)
+          person.classroom = person_data['classroom']
+        end
+
+        @people << person
+      end
+    else
+      puts 'People data file not found. Starting with an empty people list.'
+    end
+  end
+
+  def save_people_data
+    people_data = @people.map do |person|
+      {
+        class: person.class.name,
+        id: person.id,
+        name: person.name,
+        age: person.age,
+        parent_permission: person.parent_permission,
+        classroom: person.respond_to?(:classroom) ? person.classroom : nil,
+        specialization: person.respond_to?(:specialization) ? person.specialization : nil
+      }
+    end
+
+    File.write('people.json', JSON.pretty_generate(people_data))
   end
 end

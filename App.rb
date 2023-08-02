@@ -1,6 +1,7 @@
 require_relative 'lib/managers/PeopleManager'
 require_relative 'lib/managers/BookManager'
 require_relative 'lib/managers/RentalManager'
+require 'json'
 
 class App
   def initialize
@@ -33,7 +34,41 @@ class App
     @rental_manager.list_rentals_from_person_id
   end
 
-  def exit
-    puts 'See you soon!'
+  def save_data
+    save_people
+    save_books
+    save_rentals
+  end
+
+  def load_data
+    load_people
+    load_books
+    load_rentals
+  end
+
+  private
+
+  def load_people
+    @people_manager.load_people('people.json')
+  end
+
+  def load_books
+    @books_manager.load_books('books.json')
+  end
+
+  def load_rentals
+    @rental_manager.load_rentals_data('rentals.json')
+  end
+
+  def save_people
+    @people_manager.save_people_data
+  end
+
+  def save_books
+    @books_manager.save_books_data
+  end
+
+  def save_rentals
+    @rental_manager.save_rentals_data
   end
 end
