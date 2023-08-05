@@ -36,11 +36,11 @@ class PeopleManager
           parent_permission = gets.chomp.downcase
         end
       end
-      @people.push(@person_creator.add_student(age: age, name: name, parent_permission: parent_permission))
+      @people << @person_creator.add_student(age: age, name: name, parent_permission: parent_permission)
     when 2
       puts 'Specialization: '
       specialization = gets.chomp.strip
-      @people.push(@person_creator.add_teacher(age: age, name: name, specialization: specialization))
+      @people << @person_creator.add_teacher(age: age, name: name, specialization: specialization)
     else
       puts 'Invalid person type. Use (1) for student or (2) for teacher.'
     end
