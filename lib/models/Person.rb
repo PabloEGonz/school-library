@@ -1,4 +1,5 @@
 require_relative '../Nameable'
+require_relative 'NameFixer'
 
 class Person < Nameable
   attr_accessor :name, :age, :rentals, :id
@@ -11,6 +12,7 @@ class Person < Nameable
     @age = age
     @parent_permission = parent_permission
     @rentals = []
+    fix_name
   end
 
   def can_use_services?
@@ -26,5 +28,9 @@ class Person < Nameable
 
   def of_age?
     @age >= 18
+  end
+
+  def fix_name
+    @name = NameFixer.new.fix(@name)
   end
 end
